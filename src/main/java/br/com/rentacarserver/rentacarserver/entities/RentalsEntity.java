@@ -1,7 +1,6 @@
 package br.com.rentacarserver.rentacarserver.entities;
 
 import javax.persistence.*;
-import javax.swing.event.MenuDragMouseEvent;
 import java.util.Date;
 
 @Entity
@@ -14,8 +13,6 @@ public class RentalsEntity {
 
     private Long carId;
 
-    private Long customerId;
-
     private Date startDate;
 
     private Date endDate;
@@ -26,14 +23,21 @@ public class RentalsEntity {
 
     private Date updateAt;
 
+    @ManyToOne
+    @JoinColumn(name = "cars_id")
+    private CarsEntity carsEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private CustomersEntity customersEntity;
+
     public RentalsEntity(){
 
     }
 
-    public RentalsEntity(Long id, Long carId, Long customerId, Date startDate, Date endDate, Float total, Date createdAt, Date updateAt) {
+    public RentalsEntity(Long id, Long carId, Date startDate, Date endDate, Float total, Date createdAt, Date updateAt) {
         this.id = id;
         this.carId = carId;
-        this.customerId = customerId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.total = total;
@@ -55,14 +59,6 @@ public class RentalsEntity {
 
     public void setCarId(Long carId){
         this.carId = carId;
-    }
-
-    public Long getCustomerId(){
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId){
-        this.customerId = customerId;
     }
 
     public Date getStartDate(){
@@ -104,9 +100,6 @@ public class RentalsEntity {
     public void setUpdateAt(Long Up){
         this.updateAt = updateAt;
     }
-
-
-
 
 
 }

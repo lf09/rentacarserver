@@ -2,6 +2,7 @@ package br.com.rentacarserver.rentacarserver.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -27,6 +28,9 @@ public class CustomersEntity {
     private Date createdAt;
 
     private Date updateAt;
+
+    @OneToMany(mappedBy = "customersEntity")
+    private List<RentalsEntity> rentalsEntity;
 
     public CustomersEntity(){
 

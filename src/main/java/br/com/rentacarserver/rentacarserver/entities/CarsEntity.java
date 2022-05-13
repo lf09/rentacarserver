@@ -2,6 +2,7 @@ package br.com.rentacarserver.rentacarserver.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "cars")
@@ -22,27 +23,38 @@ public class CarsEntity {
 
     private String licensePlate;
 
-    private Long brandId;
-
-    private Long categoryId;
-
     private String color;
 
     private Date createdAt;
+
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private BrandEntity brandEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private CategoriesEntity categoryId;
+
+    @OneToMany(mappedBy = "carsEntity")
+    private List<CarsImageEntity> carsImageEntity;
+
+    @OneToMany(mappedBy = "carsEntity")
+    private List<CarsSpecificationsEntity> carsSpecificationsEntity;
+
+    @OneToMany(mappedBy = "carsEntity")
+    private List<RentalsEntity> rentalsEntity;
 
     public CarsEntity(){
 
     }
 
-    public CarsEntity(Long id, String name, String description, Float dailyRate, String avaliable, String licensePlate, Long brandId, Long categoryId, String color, Date createdAt) {
+    public CarsEntity(Long id, String name, String description, Float dailyRate, String avaliable, String licensePlate, String color, Date createdAt) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.dailyRate = dailyRate;
         this.avaliable = avaliable;
         this.licensePlate = licensePlate;
-        this.brandId = brandId;
-        this.categoryId = categoryId;
         this.color = color;
         this.createdAt = createdAt;
     }
@@ -93,22 +105,6 @@ public class CarsEntity {
 
     public void setLicensePlate(String licensePlate){
         this.licensePlate = licensePlate;
-    }
-
-    public Long getBrandId(){
-        return brandId;
-    }
-
-    public void setBrandId(Long brandId){
-        this.brandId = brandId;
-    }
-
-    public Long getCategoryId(){
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId){
-        this.categoryId = categoryId;
     }
 
     public String getColor(){

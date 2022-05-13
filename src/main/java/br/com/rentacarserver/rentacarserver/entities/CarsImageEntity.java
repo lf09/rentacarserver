@@ -11,20 +11,21 @@ public class CarsImageEntity {
     @GeneratedValue
     private Long id;
 
-    private Long carId;
-
     @Column(nullable = false)
     private String image;
 
     private Date createdAt;
 
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    private CarsEntity carsEntity;
+
     public CarsImageEntity(){
 
     }
 
-    public CarsImageEntity(Long id, Long carId, String image, Date createdAt) {
+    public CarsImageEntity(Long id, String image, Date createdAt) {
         this.id = id;
-        this.carId = carId;
         this.image = image;
         this.createdAt = createdAt;
     }
@@ -35,14 +36,6 @@ public class CarsImageEntity {
 
     public void setId(Long id){
         this.id = id;
-    }
-
-    public Long getCarId(){
-        return carId;
-    }
-
-    public void setCarId(Long carId){
-        this.carId = carId;
     }
 
     public String getImage(){

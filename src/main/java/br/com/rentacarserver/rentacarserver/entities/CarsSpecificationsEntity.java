@@ -12,18 +12,20 @@ public class CarsSpecificationsEntity {
     @GeneratedValue
     private Long id;
 
-    private Long carId;
+    @ManyToOne
+    @JoinColumn(name = "specification_id")
+    private SpecificationEntity specificationEntity;
 
-    private Long specificationId;
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    private CarsEntity carsEntity;
 
     public CarsSpecificationsEntity(){
 
     }
 
-    public CarsSpecificationsEntity(Long id, Long carId, Long specificationId) {
+    public CarsSpecificationsEntity(Long id) {
         this.id = id;
-        this.carId = carId;
-        this.specificationId = specificationId;
     }
 
     public Long getId(){
@@ -34,19 +36,4 @@ public class CarsSpecificationsEntity {
         this.id = id;
     }
 
-    public Long getCarId(){
-        return carId;
-    }
-
-    public void setCarId(Long carId){
-        this.carId = carId;
-    }
-
-    public Long getSpecificationId(){
-        return specificationId;
-    }
-
-    public void setSpecificationId(Long specificationId){
-        this.specificationId = specificationId;
-    }
 }
