@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface BrandRepository extends JpaRepository<BrandEntity, Long> {
 
-    List<BrandEntity> findByName( String name );
+        List<BrandEntity> findByName(String name );
 }

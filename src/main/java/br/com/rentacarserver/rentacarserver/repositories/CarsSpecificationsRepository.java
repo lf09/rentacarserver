@@ -2,10 +2,9 @@ package br.com.rentacarserver.rentacarserver.repositories;
 
 import br.com.rentacarserver.rentacarserver.entities.CarsSpecificationsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
-import java.util.List;
+public interface CarsSpecificationsRepository extends JpaRepository<CarsSpecificationsEntity, Long>{
 
-public interface CarsSpecificationRepository extends JpaRepository<CarsSpecificationsEntity, Long>{
-
-//    List<CarsSpecificationsEntity> findByName(String name );
+    Optional<CarsSpecificationsEntity> findById( Long id );
 }

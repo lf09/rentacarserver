@@ -11,8 +11,6 @@ public class RentalsEntity {
     @GeneratedValue
     private Long id;
 
-    private Long carId;
-
     private Date startDate;
 
     private Date endDate;
@@ -35,9 +33,8 @@ public class RentalsEntity {
 
     }
 
-    public RentalsEntity(Long id, Long carId, Date startDate, Date endDate, Float total, Date createdAt, Date updateAt) {
+    public RentalsEntity(Long id, Date startDate, Date endDate, Float total, Date createdAt, Date updateAt) {
         this.id = id;
-        this.carId = carId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.total = total;
@@ -51,14 +48,6 @@ public class RentalsEntity {
 
     public void setId(Long id){
         this.id = id;
-    }
-
-    public Long getCarId(){
-        return carId;
-    }
-
-    public void setCarId(Long carId){
-        this.carId = carId;
     }
 
     public Date getStartDate(){

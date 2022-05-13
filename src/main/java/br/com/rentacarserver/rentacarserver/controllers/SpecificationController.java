@@ -1,7 +1,7 @@
 package br.com.rentacarserver.rentacarserver.controllers;
 
 import br.com.rentacarserver.rentacarserver.entities.SpecificationEntity;
-import br.com.rentacarserver.rentacarserver.repositories.SpecificationRepository;
+import br.com.rentacarserver.rentacarserver.services.SpecificationService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,26 +10,26 @@ import java.util.List;
 @RequestMapping(path ="/specification")
 public class SpecificationController {
 
-    private SpecificationRepository specificationRepository;
+    private SpecificationService specificationService;
 
-    public SpecificationController(SpecificationRepository specificationRepository){
-        this.specificationRepository = specificationRepository;
+    public SpecificationController(SpecificationService specificationService){
+        this.specificationService = specificationService;
     }
 
     @GetMapping(path = "/allspecification")
     public List<SpecificationEntity> findAll(){
-        return this.specificationRepository.findAll();
+        return this.specificationService.findAll();
     }
 
     @GetMapping(path = "/allspecification/{name}")
     public List<SpecificationEntity> findByName(@PathVariable(value = "name") String specificationName ){
-        return this.specificationRepository.findByName(specificationName);
+        return this.specificationService.findByName(specificationName);
     }
 
     @PostMapping
     public void insert(@RequestBody final SpecificationEntity specificationEntity){
         try{
-            this.specificationRepository.save(specificationEntity);
+            this.specificationService.insertSpecification(specificationEntity);
         }catch (Exception e){
             e.getMessage();
         }
@@ -37,13 +37,13 @@ public class SpecificationController {
 
     @PutMapping
     public void update(@RequestBody final SpecificationEntity specificationEntity){
-        this.specificationRepository.save(specificationEntity);
+        this.specificationService.updateSpecification(specificationEntity);
     }
 
     @DeleteMapping(path = "/delete/{id}")
     public void deleteById(@PathVariable(value = "id") Long specificationId){
         if(specificationId != null) {
-            this.specificationRepository.deleteById(specificationId);
+            this.specificationService.deleteSpecifcaitionById(specificationId);
         }
     }
 }
