@@ -18,8 +18,9 @@ public class BrandEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "creat_at")
-    private Long createdAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
+    private Date createdAt;
 
     @OneToMany(mappedBy = "brand_id")
     private List<CarsEntity> carsEntity;
@@ -27,7 +28,7 @@ public class BrandEntity {
     public BrandEntity(){
     }
 
-    public BrandEntity(Long id, String name, Long createdAt){
+    public BrandEntity(Long id, String name, Date createdAt){
         this.id = id;
         this.name = name;
         this.createdAt = createdAt;
@@ -49,11 +50,11 @@ public class BrandEntity {
         this.name = name;
     }
 
-    public Long getCreatedAt(){
+    public Date getCreatedAt(){
         return this.createdAt;
     }
 
-    public void setCreatedAt( Long createdAt){
+    public void setCreatedAt( Date createdAt){
         this.createdAt = createdAt;
     }
 }

@@ -25,6 +25,8 @@ public class CarsEntity {
 
     private String color;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
     private Date createdAt;
 
     @ManyToOne

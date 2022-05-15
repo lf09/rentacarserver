@@ -2,20 +2,19 @@ package br.com.rentacarserver.rentacarserver.services;
 
 import br.com.rentacarserver.rentacarserver.entities.BrandEntity;
 import br.com.rentacarserver.rentacarserver.repositories.BrandRepository;
+import br.com.rentacarserver.rentacarserver.myutils.MyUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.time.Instant;
 import java.util.List;
 
 @Service
 public class BrandService {
 
     private BrandRepository brandRepository;
-    protected Instant dateNow = Instant.now();
 
-    public BrandService( BrandRepository brandRepository){
+    public BrandService(BrandRepository brandRepository){
         this.brandRepository = brandRepository;
     }
 
@@ -32,7 +31,7 @@ public class BrandService {
                     (!brandEntity.getName().isEmpty())){
                 if(brandEntity.getId() == null ||
                         (!this.brandRepository.existsById(brandEntity.getId()))){
-                    brandEntity.setCreatedAt(dateNow.getEpochSecond());
+                    brandEntity.setCreatedAt(MyUtils.timestamp);
                     this.brandRepository.save(brandEntity);
                 }else {
                     throw new IllegalArgumentException("Invalid ID");
@@ -47,7 +46,7 @@ public class BrandService {
                 (this.brandRepository.existsById(brandEntity.getId()))) {
             if(brandEntity.getName() != null &&
                 (!brandEntity.getName().isEmpty())) {
-                brandEntity.setCreatedAt(dateNow.getEpochSecond());
+                brandEntity.setCreatedAt(MyUtils.timestamp);
                 this.brandRepository.save(brandEntity);
             }else{
                 throw new IllegalArgumentException("Name can't be null");

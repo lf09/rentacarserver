@@ -14,6 +14,8 @@ public class CarsImageEntity {
     @Column(nullable = false)
     private String image;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
     private Date createdAt;
 
     @ManyToOne

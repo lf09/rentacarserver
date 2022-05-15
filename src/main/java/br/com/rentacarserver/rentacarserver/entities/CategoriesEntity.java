@@ -17,6 +17,8 @@ public class CategoriesEntity {
 
     private String description;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
     private Date createdAt;
 
     @OneToMany(mappedBy = "category_id")

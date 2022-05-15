@@ -25,8 +25,12 @@ public class CustomersEntity {
 
     private String phoneNumber;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
     private Date createdAt;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_at")
     private Date updateAt;
 
     @OneToMany(mappedBy = "customer_id")
@@ -114,5 +118,8 @@ public class CustomersEntity {
 
     public Date getUpdateAt(){
         return updateAt;
+    }
+    public void setUpdateAt(Date updateAt){
+        this.updateAt = updateAt;
     }
 }
