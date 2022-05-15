@@ -23,23 +23,25 @@ public class RentalsEntity {
 
     @ManyToOne
     @JoinColumn(name = "cars_id")
-    private CarsEntity carsEntity;
+    private CarsEntity cars_id;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private CustomersEntity customersEntity;
+    private CustomersEntity customer_id;
 
     public RentalsEntity(){
 
     }
 
-    public RentalsEntity(Long id, Date startDate, Date endDate, Float total, Date createdAt, Date updateAt) {
+    public RentalsEntity(Long id, Date startDate, Date endDate, Float total, Date createdAt, Date updateAt, CarsEntity cars_id, CustomersEntity customer_id) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.total = total;
         this.createdAt = createdAt;
         this.updateAt = updateAt;
+        this.cars_id = cars_id;
+        this.customer_id = customer_id;
     }
 
     public Long getId(){
@@ -90,5 +92,20 @@ public class RentalsEntity {
         this.updateAt = updateAt;
     }
 
+    public CarsEntity getCars_id() {
+        return cars_id;
+    }
+
+    public void setCars_id(CarsEntity cars_id) {
+        this.cars_id = cars_id;
+    }
+
+    public CustomersEntity getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(CustomersEntity customer_id) {
+        this.customer_id = customer_id;
+    }
 
 }

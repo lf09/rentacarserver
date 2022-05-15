@@ -19,8 +19,8 @@ public class CategoriesEntity {
 
     private Date createdAt;
 
-    @OneToMany(mappedBy = "brandEntity")
-    private List<CarsEntity> cars;
+    @OneToMany(mappedBy = "category_id")
+    private List<CarsEntity> carsEntity;
 
     public CategoriesEntity(){
 
@@ -64,4 +64,5 @@ public class CategoriesEntity {
     public void setCreatedAt(Date createdAt){
         this.createdAt = createdAt;
     }
+
 }

@@ -29,26 +29,26 @@ public class CarsEntity {
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
-    private BrandEntity brandEntity;
+    private BrandEntity brand_id;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private CategoriesEntity categoryId;
+    private CategoriesEntity category_id;
 
-    @OneToMany(mappedBy = "carsEntity")
+    @OneToMany(mappedBy = "car_id")
     private List<CarsImageEntity> carsImageEntity;
 
-    @OneToMany(mappedBy = "carsEntity")
+    @OneToMany(mappedBy = "car_id")
     private List<CarsSpecificationsEntity> carsSpecificationsEntity;
 
-    @OneToMany(mappedBy = "carsEntity")
+    @OneToMany(mappedBy = "cars_id")
     private List<RentalsEntity> rentalsEntity;
 
     public CarsEntity(){
 
     }
 
-    public CarsEntity(Long id, String name, String description, Float dailyRate, String avaliable, String licensePlate, String color, Date createdAt) {
+    public CarsEntity(Long id, String name, String description, Float dailyRate, String avaliable, String licensePlate, String color, Date createdAt, CategoriesEntity categoriesEntity) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -57,6 +57,7 @@ public class CarsEntity {
         this.licensePlate = licensePlate;
         this.color = color;
         this.createdAt = createdAt;
+        this.category_id = categoriesEntity;
     }
 
     public Long getId(){
@@ -121,5 +122,21 @@ public class CarsEntity {
 
     public void setCreatedAt(Date createdAt){
         this.createdAt = createdAt;
+    }
+
+    public BrandEntity getBrand_id() {
+        return brand_id;
+    }
+
+    public void setBrand_id(BrandEntity brand_id) {
+        this.brand_id = brand_id;
+    }
+
+    public CategoriesEntity getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(CategoriesEntity category_id) {
+        this.category_id = category_id;
     }
 }

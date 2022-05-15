@@ -29,7 +29,7 @@ public class CustomersEntity {
 
     private Date updateAt;
 
-    @OneToMany(mappedBy = "customersEntity")
+    @OneToMany(mappedBy = "customer_id")
     private List<RentalsEntity> rentalsEntity;
 
     public CustomersEntity(){

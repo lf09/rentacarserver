@@ -1,6 +1,9 @@
 package br.com.rentacarserver.rentacarserver.entities;
 
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
+
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -16,15 +19,15 @@ public class BrandEntity {
     private String name;
 
     @Column(name = "creat_at")
-    private String createdAt;
+    private Long createdAt;
 
-    @OneToMany(mappedBy = "brandEntity")
+    @OneToMany(mappedBy = "brand_id")
     private List<CarsEntity> carsEntity;
 
     public BrandEntity(){
     }
 
-    public BrandEntity(Long id, String name, String createdAt){
+    public BrandEntity(Long id, String name, Long createdAt){
         this.id = id;
         this.name = name;
         this.createdAt = createdAt;
@@ -46,11 +49,11 @@ public class BrandEntity {
         this.name = name;
     }
 
-    public String getCreatedAt(){
+    public Long getCreatedAt(){
         return this.createdAt;
     }
 
-    public void setCreatedAt( String createdAt){
+    public void setCreatedAt( Long createdAt){
         this.createdAt = createdAt;
     }
 }

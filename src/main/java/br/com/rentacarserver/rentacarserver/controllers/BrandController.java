@@ -3,6 +3,7 @@ package br.com.rentacarserver.rentacarserver.controllers;
 import br.com.rentacarserver.rentacarserver.entities.BrandEntity;
 import br.com.rentacarserver.rentacarserver.services.BrandService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,24 +29,35 @@ public class BrandController {
     }
 
     @PostMapping
-    @ResponseStatus (code = HttpStatus.CREATED)
-    public void insertBrand(@RequestBody final BrandEntity brandEntity){
+    public ResponseEntity insertBrand(@RequestBody final BrandEntity brandEntity){
         try{
             this.brandService.insertBrand(brandEntity);
+            return new ResponseEntity(HttpStatus.CREATED);
         }catch (Exception e){
             e.getMessage();
+            return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
     @PutMapping
-    public void updateBrand(@RequestBody final BrandEntity brandEntity){
-        this.brandService.updateBrand(brandEntity);
+    public ResponseEntity updateBrand(@RequestBody final BrandEntity brandEntity){
+        try{
+            this.brandService.updateBrand(brandEntity);
+            return new ResponseEntity(HttpStatus.OK);
+        }catch (Exception e){
+            e.getMessage();
+            return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
+        }
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteBrandById(@PathVariable(value = "id") Long brandId){
-        if(brandId != null) {
+    public ResponseEntity deleteBrandById(@PathVariable(value = "id") Long brandId){
+        try{
             this.brandService.deleteBrandById(brandId);
+            return new ResponseEntity(HttpStatus.OK);
+        }catch (Exception e){
+            e.getMessage();
+            return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
         }
     }
 

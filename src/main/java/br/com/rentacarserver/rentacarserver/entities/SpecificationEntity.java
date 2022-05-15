@@ -19,8 +19,8 @@ public class SpecificationEntity {
 
     private Date createdAt;
 
-    @OneToMany(mappedBy = "specificationEntity")
-    private List<CarsSpecificationsEntity> carsSpecificationsEntity;
+    @OneToMany(mappedBy = "specification_id")
+    private List<CarsSpecificationsEntity> carsSpecificationEntity;
 
     public SpecificationEntity(){
 
