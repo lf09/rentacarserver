@@ -2,6 +2,8 @@ package br.com.rentacarserver.rentacarserver.controllers;
 
 import br.com.rentacarserver.rentacarserver.entities.CarsEntity;
 import br.com.rentacarserver.rentacarserver.repositories.CarsRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,23 +29,35 @@ public class CarsController {
     }
 
     @PostMapping
-    public void insertCars(@RequestBody final CarsEntity carsEntity){
+    public ResponseEntity insertCars(@RequestBody final CarsEntity carsEntity){
         try{
             this.carsRepository.save(carsEntity);
+            return new ResponseEntity(HttpStatus.CREATED);
         }catch (Exception e){
             e.getMessage();
+            return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
     @PutMapping
-    public void updateCars(@RequestBody final CarsEntity carsEntity){
-        this.carsRepository.save(carsEntity);
+    public ResponseEntity updateCars(@RequestBody final CarsEntity carsEntity){
+        try{
+            this.carsRepository.save(carsEntity);
+            return new ResponseEntity(HttpStatus.OK);
+        }catch (Exception e){
+            e.getMessage();
+            return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
+        }
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteCars(@PathVariable(value = "id") Long carsId){
-        if(carsId != null){
+    public ResponseEntity deleteCars(@PathVariable(value = "id") Long carsId){
+        try{
             this.carsRepository.deleteById(carsId);
+            return new ResponseEntity(HttpStatus.OK);
+        }catch (Exception e){
+            e.getMessage();
+            return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
